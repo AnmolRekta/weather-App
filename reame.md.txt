@@ -1,0 +1,88 @@
+
+ Weather App
+A responsive, accessible weather application that fetches current conditions by city using OpenWeatherMap, displaying temperature in Celsius, description, an icon, wind, humidity, pressure, sunrise, and sunset with robust error handling and a live connectivity indicator.
+ Features
+- Search by city name with a labeled, required input and a Submit button that triggers the fetch flow.
+- Current weather display with temperature in °C, description, condition icon, wind speed, humidity, pressure, sunrise, and sunset.
+- Loading state that disables the button and shows progress text for a smoother experience.
+- Friendly error messages for empty input, city not found, rate limits, offline status, and request timeouts.[8][9]
+- Connectivity indicator that shows Online/Offline and, where supported, connection type and speed via the Network Information API with graceful fallback.[10][11][12]
+- Accessible live regions for status and errors, plus mobile‑first responsive UI.
+ Tech stack
+- HTML for structure and accessibility landmarks.
+- CSS for responsive styling and layout.
+- JavaScript for async fetching, rendering, error handling, and connectivity status.
+- OpenWeatherMap as the public weather API provider.
+
+Project structure
+- index.html: Semantic markup, labeled form, live regions, connectivity area, and script order to load apiKey before app logic.[13]
+- styles.css: Theme, layout, responsive grid, animated reveal, loading and error styles, and connectivity chip.
+- app.js: Weather fetch flow with timeout, UI rendering, accessibility updates, and online/offline listeners.[9][8][10]
+- config.js: Single global constant apiKey used by app.js for API requests.[13]
+- Optional assets/ folder for icons or local images if needed.
+
+ Prerequisites
+- A modern web browser that supports fetch and basic ES2019 features.[8]
+- An OpenWeatherMap API key created from a free account.
+
+ Setup
+- Place index.html, styles.css, app.js, and config.js in the same folder, for example weather-app.
+- Open config.js and set const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY' to a valid key.
+- Ensure index.html links styles.css in the head and loads config.js before app.js at the end of body.[14][13]
+
+ How to start the project
+- Quick start: Open the project folder and double‑click index.html to launch the app in the default browser.
+- VS Code Live Server (optional): Install the “Live Server” extension, open the folder in VS Code, right‑click index.html, and choose “Open with Live Server” for auto‑reload while editing.[15]
+- Verify setup: Enter a valid city (e.g., Mumbai) and check that temperature (°C), description, icon, wind, humidity, pressure, sunrise, and sunset display correctly.
+
+ Usage
+- Enter a city name and press Search to retrieve current weather conditions in Celsius.
+- On success, the card fades in with temperature, description, icon, wind, humidity, pressure, and sunrise/sunset.
+- On error, a red error banner shows a clear message and the result card remains hidden.
+
+ Connectivity indicator
+- A small chip below the title shows Online or Offline and updates instantly when connectivity changes.[16][17][10]
+- Where supported, it also displays connection details like Wi‑Fi or cellular type, effectiveType such as 4g, and estimated downlink Mbps.[11][12][18]
+- If not supported, it gracefully falls back to a simple Online/Offline label.[10][11]
+
+Error handling behavior
+- Empty input: prompts to enter a city name and prevents the request.
+- 404 city not found: shows a friendly “City not found” message and hides old results.[19][20]
+- 429 rate limit: prompts to try again later.
+- Offline: immediately shows an offline message using navigator.onLine as a heuristic.[10]
+- Timeout: aborts the request after about 10 seconds and shows a timeout message.[9]
+
+ Accessibility notes
+- Labeled input with required attribute for better form usability and validation cues.
+- role="status" and aria-live regions announce progress and errors without abrupt interruptions.
+- Reduced motion preference respected by removing transitions when requested.
+
+ API details
+- Endpoint: OpenWeatherMap Current Weather Data API queried with units=metric for Celsius temperatures.
+- Icon: Official OpenWeatherMap icon URL pattern used to display condition artwork.
+- Security: The key is exposed client‑side for simplicity in this static project; for production, use a server proxy or environment injection.
+ 
+Notes and limitations
+- The connectivity flag is a best‑effort indicator and may differ from actual internet reachability in some environments.[10]
+- Network Information API support varies across browsers, so connection details may not always be available.[12][11]
+- Forecasts and unit toggles are not included by default but can be added later as enhancements.
+
+Troubleshooting
+- Seeing no styles: confirm styles.css is correctly linked in the head and exists in the same folder.[14]
+- No data on valid city: verify the API key value in config.js and confirm that the key is active.
+- Error banner not visible: ensure no conflicting CSS overrides display and that app.js calls showError with a non‑empty message.[21]
+- Timeout errors: test on a stable network or increase the timeout value in app.js if needed.[9]
+
+Submission
+- Include index.html, styles.css, app.js, config.js, and this README.md in a single folder.
+- Compress the folder into a zip archive and submit it according to the PDF’s instructions.
+
+ License
+- This project may be submitted for evaluation as coursework and is otherwise unlicensed by default; add a license if distributing publicly.
+
+ Acknowledgments
+- Requirements adapted from the provided Weather App PDF brief, implementing best practices for HTML, CSS, JavaScript, and public API usage.
+
+ Last updated
+- 2025‑10‑03.
+

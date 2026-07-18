@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Encoding and responsive viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Weather Forecast App</title>
+
+  <!-- Meta description for SEO -->
+  <meta name="description" content="Get real-time weather forecasts for any city with detailed information including temperature, wind, humidity, and more." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts and stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>Weather Forecast</h1>
+
+    <!-- Connectivity indicator (updated by app.js) -->
+    <div id="netStatus" class="net" role="status" aria-live="polite"></div>
+
+    <!-- Accessible search form -->
+    <form id="weatherForm" class="search-bar" aria-label="Search weather" novalidate>
+      <label for="cityInput">City</label>
+      <input id="cityInput" type="text" placeholder="Enter city name" required autocomplete="address-level2" aria-describedby="statusMsg errorMsg" />
+      <button id="submitBtn" type="submit">Search</button>
+    </form>
+
+    <!-- Status (polite) and errors (assertive) -->
+    <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+    <p id="errorMsg" class="error" aria-live="assertive"></p>
+
+    <!-- Result card -->
+    <section id="weatherWrap" class="weather-wrap" aria-live="polite">
+      <div class="row">
+        <div class="weather-icon"><img id="weatherIcon" alt="Weather icon" /></div>
+        <div>
+          <div id="temp" class="headline">--°C</div>
+          <div id="cityName" class="subhead">—</div>
+          <div id="dateTime" class="subhead">—</div>
+          <div id="description" class="subhead">—</div>
+        </div>
+        <div>
+          <div class="details">
+            <div class="detail"><div class="label">Wind</div><div id="windSpeed" class="value">—</div></div>
+            <div class="detail"><div class="label">Humidity</div><div id="humidity" class="value">—</div></div>
+            <div class="detail"><div class="label">Pressure</div><div id="pressure" class="value">—</div></div>
+          </div>
+          <div id="sunriseSunset" class="sun-times"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fallback for users without JavaScript -->
+  <noscript>
+    <p>This weather app requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+  </noscript>
+
+  <!-- Load key first, then app logic -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
